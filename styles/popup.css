@@ -5,9 +5,10 @@
     right: -100%; /* Inicia fuera de la pantalla */
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(255, 255, 255, 1);
     transition: right 0.25s ease-out;
     box-sizing: border-box;
+    background-color: #FEC7D7;
 }
 
 .popup .contenido {
@@ -16,14 +17,71 @@
     left: 50%;
     transform: translate(-50%, -50%);
     color: #fff;
-    text-align: center;
 }
 
 .cerrar {
     position: absolute;
     top: 10px;
-    right: 10px;
-    color: #fff;
+    left: 10px;
+    color: #000000;
     cursor: pointer;
     font-size: 20px;
+}
+
+.popup .contenido{
+    color: black;
+}
+
+.tarjetaDetalles{
+    background-color: #FFFFFE;
+    border-radius: 15px;
+    position: relative;
+    z-index: 2;
+}
+
+.popup .contenido .imgMascota{
+    width: 100%;
+    max-height: 45vh;
+    position:  relative;
+    object-fit: cover;
+    top: 20px;
+    z-index: 1;
+}
+
+.popup .contenido .imgIcono{
+    width: 24px;
+    height: 24px;
+}
+
+.popup .contenido .contenedorPersonalidades{
+    display: flex;
+    justify-content: space-around;
+}
+
+.popup .contenido .divPerosonalidad{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    border: 2px solid #A786DF;
+    width: min-content;
+}
+
+.popup .contenido .imgPersonalidades{
+    width: 40px;
+    height: 40px;
+}
+
+.fotoDueño{
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 48px;
+    border: 3px solid var(--Green, #85D1CE);
+}
+
+#botonContactar{
+    cursor: pointer;
 }
