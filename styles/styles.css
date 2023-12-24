@@ -5,4 +5,120 @@
 
 body{
     background-color: #FEC7D7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform  2s;
+}
+
+.inicioLogo {
+    width: 31px;
+    height: 31px;
+    transition: transform 0.2s, opacity 2s; 
+}
+
+.zoom {
+    transform: scale(5);
+    object-fit: contain;
+}
+
+#container-pagina2{
+    display: none;
+    flex-direction: column;
+    text-align: center;
+    max-width: 327px;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+#container-pagina2.fade-in {
+    opacity: 1;
+}
+
+#container-pagina2 h1{
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+#container-pagina2 p{
+    width: 327px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.08px;
+    margin-bottom: 109px;
+}
+
+#imagenPagina2{
+    width: 327px;
+    height: 327px;
+    object-fit: cover;
+    margin-bottom: 33px;
+}
+
+#btn-siguente{
+    background-color: #0E172C;
+    color: #FFFFFE;
+    border-radius: 98px;
+    min-width: 100%;
+    padding: 16px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    border: none;
+    cursor: pointer
+}
+
+#container-pagina3{
+    display: none;
+    flex-direction: column;
+    text-align: center;
+    max-width: 327px;
+    align-items: center;
+    opacity: 0;
+}
+
+#container-pagina3 h1{
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+#container-pagina3 p{
+    width: 327px;
+    font-family: Nunito;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.08px;
+    margin-bottom: 109px;
+}
+
+#imagenPagina3{
+    width: 327px;
+    height: 327px;
+    object-fit: cover;
+    margin-bottom: 33px;
+}
+
+#btn-siguente3{
+    background-color: #0E172C;
+    color: #FFFFFE;
+    border-radius: 98px;
+    min-width: 100%;
+    padding: 16px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
 }
