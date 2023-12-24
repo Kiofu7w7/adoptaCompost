@@ -1,3 +1,8 @@
+import { dibuajarLanding } from "../../main.js";
+import { ejecutarChats } from "./dibujarChats.js";
+import { ejecutarFavoritos } from "./dibujarFavoritos.js";
+import { ejecutrarPerfil } from "./dibujarHtmlPerfil.js";
+
 let footer;
 
 export const dibujarFooter = (contenedor) => {
@@ -15,15 +20,15 @@ export const dibujarFooter = (contenedor) => {
     });
 
     footer.querySelector('#btnChat').addEventListener('click', () => {
-        handleBtnChatClick();
+        handleBtnChatClick(contenedor);
     });
 
     footer.querySelector('#btnFavoritos').addEventListener('click', () => {
-        handleBtnFavoritosClick();
+        handleBtnFavoritosClick(contenedor);
     });
 
     footer.querySelector('#btnPerfil').addEventListener('click', () => {
-        handleBtnPerfilClick();
+        handleBtnPerfilClick(contenedor);
     });
 };
 
@@ -38,21 +43,20 @@ export const borrarFooter = () => {
 };
 
 const handleBtnHomeClick = () => {
-    // Agrega la lógica para el botón Home
-    console.log("Home")
+    dibuajarLanding()
 };
 
-const handleBtnChatClick = () => {
-    // Agrega la lógica para el botón Chat
-    console.log("Chat")
+const handleBtnChatClick = (contenedor) => {
+    contenedor.innerHTML = ""
+    ejecutarChats(contenedor)
 };
 
-const handleBtnFavoritosClick = () => {
-    // Agrega la lógica para el botón Favoritos
-    console.log("Favoritos")
+const handleBtnFavoritosClick = (contenedor) => {
+    contenedor.innerHTML = ""
+    ejecutarFavoritos(contenedor)
 };
 
-const handleBtnPerfilClick = () => {
-    // Agrega la lógica para el botón Perfil
-    console.log("Perfil")
+const handleBtnPerfilClick = (contenedor) => {
+    contenedor.innerHTML = ""
+    ejecutrarPerfil(contenedor)
 };

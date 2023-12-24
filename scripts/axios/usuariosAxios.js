@@ -63,3 +63,11 @@ function quitarIdMascota(datos, idMascota, tipo) {
 
     return datos;
 }
+
+export const cambiarUsuario = async (id, data) => {
+    try {
+        await axios.put(urlUsuarios+"/"+id, data)
+    } catch (error) {
+        console.log(error)
+    }
+}

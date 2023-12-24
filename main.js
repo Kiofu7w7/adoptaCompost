@@ -4,7 +4,8 @@ import { PlantillaLanding, borrarContenido, crearContenedor, crearTarjetaMascota
 
 const bodyOriginal = document.getElementById("bodyOriginal")
 
-const dibuajarLanding = async () => {
+export const dibuajarLanding = async () => {
+    bodyOriginal.innerHTML = ""
     PlantillaLanding(bodyOriginal)
     const bodyDibujableLanding = document.getElementById("sectionLanding")
     const botonPerros = document.getElementById("btnPerros")
@@ -30,7 +31,7 @@ const dibuajarLanding = async () => {
         perrosGatos(false)
     })
     
-    dibujarFooter(bodyDibujableLanding)
+    dibujarFooter(bodyOriginal)
 }
 
 dibuajarLanding()

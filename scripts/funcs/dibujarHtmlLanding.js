@@ -38,6 +38,8 @@ export const crearTarjetaMascota = (data, contenedor) => {
         const tarjeta = document.createElement('article');
         tarjeta.id = element.id;
         tarjeta.className = element.id_usuario;
+        perroGato = sessionStorage.getItem("perroGato")
+        tarjeta.setAttribute("data-value", perroGato)
 
         const imagen = document.createElement('img');
         imagen.src = element.url;
@@ -54,7 +56,7 @@ export const crearTarjetaMascota = (data, contenedor) => {
         tarjeta.appendChild(parrafo);
 
         tarjeta.addEventListener('click', () => {
-            detallesMascotas(element.id, element.id_usuario);
+            detallesMascotas(element.id, element.id_usuario, tarjeta.getAttribute("data-value"));
         });
 
         contenedor.appendChild(tarjeta);
@@ -62,8 +64,8 @@ export const crearTarjetaMascota = (data, contenedor) => {
     perroGato = sessionStorage.getItem("perroGato")
 }
 
-async function detallesMascotas(idMascota, idDueño) {
-    const dataMascota = await buscarMascota(perroGato, idMascota)
+export async function detallesMascotas(idMascota, idDueño, esPeOGa) {
+    const dataMascota = await buscarMascota(esPeOGa, idMascota)
     const dataDueño = await buscarUsuario(idDueño)
     const dataUsuario = await buscarUsuario(idUsuarioLocal)
 
@@ -83,7 +85,7 @@ async function detallesMascotas(idMascota, idDueño) {
 
     }
 
-    let imagenFovorito = esFavoritoONo(dataUsuario, idMascota, perroGato)
+    let imagenFovorito = esFavoritoONo(dataUsuario, idMascota, esPeOGa)
 
     let imagenSexo;
     if (dataMascota.sexo == "macho") {
@@ -155,7 +157,7 @@ async function detallesMascotas(idMascota, idDueño) {
     const favoritosClickHandler = () => {
         const botonFavoritos = document.getElementById("botonFavoritos");
         botonFavoritos.setAttribute("src", "https://res.cloudinary.com/dlwr6vxib/image/upload/v1702613336/reto1/icons/jcmaxesvrzzuzudgksfe.png");
-        ponerFavorito(dataUsuario, idMascota, perroGato);
+        ponerFavorito(dataUsuario, idMascota, esPeOGa);
         botonFavoritos.id = "botonNoFavoritos";
         botonFavoritos.removeEventListener('click', favoritosClickHandler);
         const botonNoFavoritos = document.getElementById("botonNoFavoritos");
@@ -165,7 +167,7 @@ async function detallesMascotas(idMascota, idDueño) {
     const noFavoritosClickHandler = () => {
         const botonNoFavoritos = document.getElementById("botonNoFavoritos");
         botonNoFavoritos.setAttribute("src", "https://res.cloudinary.com/dlwr6vxib/image/upload/v1702613338/reto1/icons/wutq9ccbbbbb5mgd3de8.png");
-        quitarFavorito(dataUsuario, idMascota, perroGato);
+        quitarFavorito(dataUsuario, idMascota, esPeOGa);
         botonNoFavoritos.id = "botonFavoritos";
         botonNoFavoritos.removeEventListener('click', noFavoritosClickHandler);
         const botonFavoritos = document.getElementById("botonFavoritos");
@@ -195,11 +197,8 @@ export const paginaNuevaConFooter = (contenedor) => {
     contenedor.innerHTML = "";
 }
 
-const chatDetalles = async (idUsuario, idUsuario2, imagen, nombre, apellidos) => {
-
-    //const chatsUser = await buscarChatsUsuario("1")
+export const chatDetalles = async (idUsuario, idUsuario2, imagen, nombre, apellidos) => {
     const chatsUserEspecifico = await buscarChat(idUsuario, idUsuario2)
-    //console.warn(chatsUser)
     mostrarPopup(`
     <div id="detallesChat">
         <img src="${imagen}">
