@@ -1,0 +1,103 @@
+#dibujable {
+    position: relative;
+    left: 100vh;
+    height: 100vh;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.contenedorTarjetas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(156px, 1fr));
+    gap: 16px;
+    max-width: 100vh;
+    max-height: 80vh;
+    overflow-y: auto;
+    align-content: start;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.botonesPerrosGatos {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+.botonesPerrosGatos .botonAnimal {
+    background-color: #0E172C;
+    color: #FFFFFE;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+    padding: 8px 25px;
+    border-radius: 8px;
+    gap: 16px;
+    cursor: pointer;
+}
+
+.botonesPerrosGatos .botonAnimal .circuloAzul {
+    background-color: #85D1CE;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    height: 55px;
+    border-radius: 100%;
+}
+
+.imagenBotonPerrosGatos {
+    width: 40px;
+    height: 40px;
+}
+
+.entradaEpica {
+    position: absolute;
+    transform: translate(-100vh, 0);
+    transition: transform 0.7s ease-in-out;
+}
+
+@media (max-width: 400px) {
+    .contenedorTarjetas {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+#sectionLanding h1,h2 {
+    margin-bottom: 10px;
+}
+
+section article {
+    position: relative;
+    width: 156px;
+    height: 250px;
+    font-size: 14px;
+}
+
+section article img {
+    padding-top: 5px;
+    cursor: pointer;
+    width: 156px;
+    height: 250px;
+    object-fit: cover;
+    margin-bottom: -8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+}
+
+section article .contenido {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    color: #FFFFFE;
+    font-weight: 700;
+    padding: 14px;
+    background-image: linear-gradient(to top, black, transparent);
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 15px;
+}

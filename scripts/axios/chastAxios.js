@@ -66,12 +66,12 @@ async function getChat(chats, idMiembro1, idMiembro2) {
 export async function agregarMensajeAChat(idChat,chat, idRemitente, mensaje) {
     const horaActual = obtenerHoraActual()
     // Crea un nuevo objeto mensaje
-    const mensajeNuevo = {
-        remitente: idRemitente,
-        texto: mensaje,
-        hora: horaActual
+    console.error(chat.mensajes)
+    if(chat.mensajes == ""){
+        chat.mensajes += `${idRemitente}:'${mensaje}',${horaActual}`
+    }else{
+        chat.mensajes += `|${idRemitente}:'${mensaje}',${horaActual}`
     }
-    chat.mensajes += `|${idRemitente}:'${mensaje}',${horaActual}`
     await axios.put(urlChats+"/"+idChat, chat)
 }
 

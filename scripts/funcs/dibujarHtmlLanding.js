@@ -11,8 +11,20 @@ export const PlantillaLanding = (contenedor) => {
     <section id="sectionLanding">
         <h1>Adopta una adorable mascota</h1>
         <h2>Categorías de mascotas</h2>
-        <button id="btnPerros">Perros</button>
-        <button id="btnGatos">Gatos</button>
+        <div class="botonesPerrosGatos">
+            <div class="botonAnimal" id="btnPerros">
+                <div class="circuloAzul">
+                    <img class="imagenBotonPerrosGatos" src="https://res.cloudinary.com/dlwr6vxib/image/upload/v1702613339/reto1/icons/p3h1ogahwohtq2j5fzzs.png">
+                </div>
+                <p class="nombreBtn">Perros</p>
+            </div>
+            <div class="botonAnimal" id="btnGatos">
+                <div class="circuloAzul">
+                    <img class="imagenBotonPerrosGatos" src="https://res.cloudinary.com/dlwr6vxib/image/upload/v1702613338/reto1/icons/dyvyu5ojjrxd2ui3bcjx.png">
+                </div>
+                <p class="nombreBtn">Gatos</p>
+            </div>
+        </div>
     </section>
     `
     contenedor.innerHTML = plantilla
@@ -45,15 +57,20 @@ export const crearTarjetaMascota = (data, contenedor) => {
         imagen.src = element.url;
         imagen.alt = 'TarjetaMascota';
 
+        const contenido = document.createElement('div');
+        contenido.className = 'contenido';
+
         const titulo = document.createElement('h2');
         titulo.textContent = element.Nombre;
 
         const parrafo = document.createElement('p');
         parrafo.textContent = element.raza;
 
+        contenido.appendChild(titulo);
+        contenido.appendChild(parrafo);
+
         tarjeta.appendChild(imagen);
-        tarjeta.appendChild(titulo);
-        tarjeta.appendChild(parrafo);
+        tarjeta.appendChild(contenido);
 
         tarjeta.addEventListener('click', () => {
             detallesMascotas(element.id, element.id_usuario, tarjeta.getAttribute("data-value"));
@@ -129,25 +146,50 @@ export async function detallesMascotas(idMascota, idDueño, esPeOGa) {
     }
 
     mostrarPopup(`
-    <img class="imgMascota" src="${dataMascota.url}">
-    <div class="tarjetaDetalles">
-        <h1>${dataMascota.Nombre}</h1>
-        <img class="imgIcono" src="${imagenSexo}">
-        <img id="${favoritoIdONoImg}" class="imgIcono" src="${imagenFovorito}">
-        <img class="imgIcono" src="https://res.cloudinary.com/dlwr6vxib/image/upload/v1702613340/reto1/icons/a54f5iqoit6tnqhbbic4.png">
-        <p>${dataMascota.raza}</p>
-        <img class="imgIcono" src="https://res.cloudinary.com/dlwr6vxib/image/upload/v1703370928/reto1/icons/oko4zqchcwitojpl4si4.png">
-        <p>${dataMascota.edad}</p>
-        <img class="imgIcono" src="https://res.cloudinary.com/dlwr6vxib/image/upload/v1702613340/reto1/icons/m2obn4yiyegfje2dvpmw.png">
-        <p>${dataMascota.direccion}</p>
-        <div class="contenedorPersonalidades">
-            ${personalidadesHTML}
+    <div class="contenedorDetallesMascotas">
+        <img class="imgMascota" src="${dataMascota.url}">
+        <div class="tarjetaDetalles">
+            <div class="nombreSexoFavoritos">
+                <div class="nombreSexo">
+                    <h1>${dataMascota.Nombre}</h1>
+                    <img class="imgIcono" src="${imagenSexo}">
+                </div>
+                <div class="favoritoDIv">
+                    <img id="${favoritoIdONoImg}" class="imgIconoFav" src="${imagenFovorito}">
+                </div>
+            </div>
+            <div class="razaEdad">
+                <div class="raza">
+                    <img class="imgIcono" src="https://res.cloudinary.com/dlwr6vxib/image/upload/v1702613340/reto1/icons/a54f5iqoit6tnqhbbic4.png">
+                    <p>${dataMascota.raza}</p>
+                </div>
+                <div class="edad">
+                    <img class="imgIcono" src="https://res.cloudinary.com/dlwr6vxib/image/upload/v1703370928/reto1/icons/oko4zqchcwitojpl4si4.png">
+                    <p>${dataMascota.edad}</p>
+                </div>
+            </div>
+            <div class="direccionDiv">
+                <img class="imgIcono" src="https://res.cloudinary.com/dlwr6vxib/image/upload/v1702613340/reto1/icons/m2obn4yiyegfje2dvpmw.png">
+                <p>${dataMascota.direccion}</p>
+            </div>
+            <div class="contenedorPersonalidades">
+                ${personalidadesHTML}
+            </div>
+            <div class="historia">
+                <h2 class="tituloHistoria">${dataMascota.extra.titulo}</h2>
+                <h3 class="detallesHistoria">${dataMascota.extra.descripcion}</h3>
+            </div>
+            <div class="dueñoDiv">
+                <div class="fotoNombre">
+                    <img class="fotoDueño" src="${dataDueño.url_foto_perfil}">
+                    <div class="publicadoPorDiv">
+                        <p>publicado por</p>
+                        <p>${dataDueño.nombre} ${dataDueño.apellidos}</p>
+                    </div>
+                </div>
+                <button id="botonContactar">Contactar</button>
+            </div>
         </div>
-        <h2>${dataMascota.extra.titulo}</h2>
-        <h3>${dataMascota.extra.descripcion}</h3>
-        <img class="fotoDueño" src="${dataDueño.url_foto_perfil}">
-        <p>${dataDueño.nombre} ${dataDueño.apellidos}</p>
-        <button id="botonContactar">Contactar</button>
     </div>
     `)
     document.getElementById("botonContactar").addEventListener('click', () => {
@@ -163,7 +205,7 @@ export async function detallesMascotas(idMascota, idDueño, esPeOGa) {
         const botonNoFavoritos = document.getElementById("botonNoFavoritos");
         botonNoFavoritos.addEventListener('click', noFavoritosClickHandler);
     };
-    
+
     const noFavoritosClickHandler = () => {
         const botonNoFavoritos = document.getElementById("botonNoFavoritos");
         botonNoFavoritos.setAttribute("src", "https://res.cloudinary.com/dlwr6vxib/image/upload/v1702613338/reto1/icons/wutq9ccbbbbb5mgd3de8.png");
@@ -198,19 +240,30 @@ export const paginaNuevaConFooter = (contenedor) => {
 }
 
 export const chatDetalles = async (idUsuario, idUsuario2, imagen, nombre, apellidos) => {
-    const chatsUserEspecifico = await buscarChat(idUsuario, idUsuario2)
     mostrarPopup(`
-    <div id="detallesChat">
-        <img src="${imagen}">
-        <h1>${nombre} ${apellidos}</h1>
-        <div id="contenedorMensajes">
+    <div class="contenedorChatDetalles">
+        <div id="detallesChat">
+            <div class="informacionChat">
+                <img src="${imagen}">
+                <h1>${nombre} ${apellidos}</h1>
+            </div>
+            <div id="contenedorMensajes">
+            </div>
         </div>
-    </div>
-    <input id="inputEnviarTexto" type="text">
-    `)
+        <input id="inputEnviarTexto" placeholder="Aa" type="text">
+        </div>
+        `)
+
+        chatDibujar(idUsuario, idUsuario2, imagen, nombre, apellidos)
+
+}
+
+async function chatDibujar (idUsuario, idUsuario2, imagen, nombre, apellidos) {
+    const chatsUserEspecifico = await buscarChat(idUsuario, idUsuario2)
     const contenedorMensajes = document.getElementById("contenedorMensajes")
     const contenedorChat = document.getElementById("detallesChat")
     const mensajes = chatsUserEspecifico.mensajes.split("|")
+    console.warn(chatsUserEspecifico.mensajes)
     if (mensajes[0] != "") {
         mensajes.forEach((mensaje) => {
             const [remitente, texto, hora] = mensaje.match(/(\d+):'([^']+)',(\d+:\d+)/).slice(1);
@@ -220,7 +273,7 @@ export const chatDetalles = async (idUsuario, idUsuario2, imagen, nombre, apelli
                 <div class="mensaje mensajeSalidaContenedor">
                     <p>${hora}</p>
                     <div class="contenedorTexto mensajeSalida">
-                        <div class="texto">
+                        <div class="textoChat">
                             <p>${texto}</p>
                         </div>
                     </div>
@@ -230,7 +283,7 @@ export const chatDetalles = async (idUsuario, idUsuario2, imagen, nombre, apelli
                 <div class="mensaje mensajeEntradaContenedor">
                     <p>${hora}</p>
                     <div class="contenedorTexto mensajeEntrada">
-                        <div class="texto">
+                        <div class="textoChat">
                             <p>${texto}</p>
                         </div>
                     </div>
@@ -239,24 +292,27 @@ export const chatDetalles = async (idUsuario, idUsuario2, imagen, nombre, apelli
         });
     }
 
-    inputEnviarTexto.addEventListener("keydown", async (event) => {
+    document.getElementById("inputEnviarTexto").addEventListener("keydown", async (event) => {
         if (event.key === "Enter") {
             event.preventDefault();
             await agregarMensajeAChat(chatsUserEspecifico.id, chatsUserEspecifico, idUsuario, inputEnviarTexto.value)
-            contenedorChat.innerHTML = ""
-            plantillaChatDetalles(nombre, apellidos, imagen)
+            await plantillaChatDetalles(contenedorChat, nombre, apellidos, imagen, idUsuario, idUsuario2)
         }
     })
-
 }
 
-const plantillaChatDetalles = (nombre, apellidos, imagen) => {
-    contenedorChat.innerHTML += `
+const plantillaChatDetalles = async (contenedorChat, nombre, apellidos, imagen, id1, id2) => {
+    contenedorChat.innerHTML = `
+    <div class="contenedorChatDetalles">
     <div id="detallesChat">
-        <img src="${imagen}">
-        <h1>${nombre} ${apellidos}</h1>
+        <div class="informacionChat">
+            <img src="${imagen}">
+            <h1>${nombre} ${apellidos}</h1>
+        </div>
         <div id="contenedorMensajes">
         </div>
     </div>
-    <input id="inputEnviarTexto" type="text">`
+    <input id="inputEnviarTexto" placeholder="Aa" type="text">
+    </div>`
+    await chatDibujar(id1, id2, imagen, nombre, apellidos)
 }

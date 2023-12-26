@@ -1,0 +1,90 @@
+#detallesChat{
+    width: 100%;
+    height: 100%;
+}
+
+#detallesChat img{
+    width: 64px;
+    height: 64px;
+    border-radius: 100%;
+    border: 2px solid #85D1CE;
+    object-fit: cover;
+}
+
+.contenedorChatDetalles{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#contenedorMensajes{
+    padding: 20px;
+    overflow-y: auto;
+    max-height: 75vh;
+}
+
+.informacionChat{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FFFFFE;
+    width: 100%;
+    padding: 20px;
+}
+
+.mensajes .mensaje{
+    display: flex;
+    flex-direction: column;
+    min-width: 327px;
+}
+
+.mensajeSalidaContenedor{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mensajeEntradaContenedor, .mensajeSalidaContenedor{
+    margin-top: 2%;
+}
+
+.mensajeEntradaContenedor{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.mensaje .contenedorTexto{
+    width: 100%;
+}
+
+.mensaje .mensajeEntrada .textoChat{
+    background-color: #535353 !important;   
+    color: #FFFFFE; 
+}
+
+.mensaje .mensajeSalida{
+    align-self: flex-end;
+    display: flex;
+    justify-content: end;
+}
+
+.mensaje .mensajeEntrada{
+    align-self: flex-start;
+    display: flex;
+    justify-content: start;
+}
+
+.mensaje .contenedorTexto .textoChat{
+    background-color: #FFFFFE;
+    padding: 16px;
+    border-radius: 16px;
+    width: max-content;
+}
+
+.contenedorChatDetalles input{
+    width: 96%;
+    padding: 12px 16px;
+    margin-bottom: 5px;
+}

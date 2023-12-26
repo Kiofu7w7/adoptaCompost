@@ -1,0 +1,32 @@
+.footerStyle{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background-color: #FFFFFE;
+    height: 8vh;
+    align-items: center;
+}
+
+.buttonFooter{
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    padding: 8px 16px;
+    outline: none;
+    border: none;
+    border-radius: 80px;
+    gap: 8px;
+}
+
+.clicked{
+    background-color: #0E172C;
+    color: #85D1CE;
+}
+
+.clicked .texto{
+    display: block;
+}
+
+.texto{
+    display: none;
+}

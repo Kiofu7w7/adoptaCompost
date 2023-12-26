@@ -13,7 +13,7 @@ export const ejecutarChats = (cont) => {
 const plantillaChats = (contenedor) => {
     contenedor.innerHTML += `
     <section id="sectionChats">
-        <h1>Mensajes</h1>
+        <h1 class="tituloChats">Mensajes</h1>
         <div id="contenedorChats">
         </div>
     </section>
@@ -37,9 +37,9 @@ async function recorrerChats(chats) {
         const mensajesString = mensajes;
         const mensajesIndividuales = mensajesString.split('|');
         const ultimoMensaje = mensajesIndividuales[mensajesIndividuales.length - 1];
-        if (ultimoMensaje){
+        if (ultimoMensaje) {
             const [remitente, mensaje, hora] = ultimoMensaje.match(/(\d+):'([^']+)',(\d+:\d+)/).slice(1);
-    
+
             contenedorChats.innerHTML += `
             <a class="linkchat" id="${integrantes.miembro2_id}">
                 <div class="contenedorChats">
@@ -63,16 +63,15 @@ async function recorrerChats(chats) {
                 </div>
             </a>
             `
-     
         }
     }
 
-    document.addEventListener("click",async function(event) {
-        let targetElement = event.target; 
+    document.addEventListener("click", async function (event) {
+        let targetElement = event.target;
         while (targetElement != null) {
             if (targetElement.classList.contains("linkchat")) {
                 const datosUser2 = await buscarUsuario(targetElement.id)
-                chatDetalles(idUsuarioLocal,  targetElement.id, datosUser2.url_foto_perfil, datosUser2.nombre, datosUser2.apellidos)
+                chatDetalles(idUsuarioLocal, targetElement.id, datosUser2.url_foto_perfil, datosUser2.nombre, datosUser2.apellidos)
                 return;
             }
             targetElement = targetElement.parentElement;

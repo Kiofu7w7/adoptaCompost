@@ -5,8 +5,10 @@ import { PlantillaLanding, borrarContenido, crearContenedor, crearTarjetaMascota
 const bodyOriginal = document.getElementById("bodyOriginal")
 
 export const dibuajarLanding = async () => {
-    bodyOriginal.innerHTML = ""
-    PlantillaLanding(bodyOriginal)
+    localStorage.setItem("paginaActual", "home")
+    bodyOriginal.innerHTML = `<main id="dibujable"></main>`
+    const landingContainer = document.getElementById("dibujable")
+    PlantillaLanding(landingContainer)
     const bodyDibujableLanding = document.getElementById("sectionLanding")
     const botonPerros = document.getElementById("btnPerros")
     const botonGatos = document.getElementById("btnGatos")
@@ -31,7 +33,8 @@ export const dibuajarLanding = async () => {
         perrosGatos(false)
     })
 
-    dibujarFooter(bodyOriginal)
+    dibujarFooter(landingContainer)
+    landingContainer.classList.add("entradaEpica")
 }
 
 //dibuajarLanding()
@@ -39,13 +42,14 @@ export const dibuajarLanding = async () => {
 const img = document.getElementById("inicioLogo");
 let contador = 0
 const boton1 = document.getElementById("btn-siguente")
+const boton2 = document.getElementById("btn-siguente3")
 const container2 = document.getElementById("container-pagina2")
 const container3 = document.getElementById("container-pagina3")
 let timeoutId;
 
 bodyOriginal.addEventListener("click", () => {
     if (contador == 0) {
-
+        console.log("si")
         img.classList.add("zoom");
         timeoutId = setTimeout(() => {
             bodyOriginal.style.cursor = "auto";
@@ -55,28 +59,21 @@ bodyOriginal.addEventListener("click", () => {
                 container2.style.display = "block";
                 setTimeout(() => {
                     container2.style.opacity = "1";
+                    container3.style.display = ("block")
                 }, 50);
             }, 50);
-        }, 1000);
+        }, 500);
 
         contador++
     }
 });
 
 boton1.addEventListener('click', function () {
-    container2.style.opacity = "0";
-    setTimeout(function () {
-        container2.style.display = "none";
-        container3.style.display = "block";
-        setTimeout(function () {
-            container3.style.opacity = "1";
-        }, 50);
-    }, 50);
-    contador++;
-    document.getElementById('container-pagina2').classList.add('fade-in');
+    container3.classList.add("despalzar")
+    container2.classList.add("salir")
 })
 
-container3.addEventListener('click', function () {
+boton2.addEventListener('click', function () {
     bodyOriginal.innerHTML = ""
     dibuajarLanding()
 })

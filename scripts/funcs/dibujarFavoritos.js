@@ -40,15 +40,20 @@ const dibujarFavoritos = async () => {
             imagen.src = data.url;
             imagen.alt = 'TarjetaMascota';
 
+            const contenido = document.createElement('div');
+            contenido.className = 'contenido';
+
             const titulo = document.createElement('h2');
             titulo.textContent = data.Nombre;
 
             const parrafo = document.createElement('p');
             parrafo.textContent = data.raza;
 
+            contenido.appendChild(titulo);
+            contenido.appendChild(parrafo);
+
             tarjeta.appendChild(imagen);
-            tarjeta.appendChild(titulo);
-            tarjeta.appendChild(parrafo);
+            tarjeta.appendChild(contenido)
 
             tarjeta.addEventListener('click', () => {
                 detallesMascotas(data.id, data.id_usuario, tarjeta.getAttribute("data-value"));
@@ -61,9 +66,13 @@ const dibujarFavoritos = async () => {
             tarjeta.className = data.id_usuario;
             tarjeta.setAttribute("data-value", tipo)
 
+
             const imagen = document.createElement('img');
             imagen.src = data.url;
             imagen.alt = 'TarjetaMascota';
+
+            const contenido = document.createElement('div');
+            contenido.className = 'contenido';
 
             const titulo = document.createElement('h2');
             titulo.textContent = data.Nombre;
@@ -71,9 +80,11 @@ const dibujarFavoritos = async () => {
             const parrafo = document.createElement('p');
             parrafo.textContent = data.raza;
 
+            contenido.appendChild(titulo);
+            contenido.appendChild(parrafo);
+
             tarjeta.appendChild(imagen);
-            tarjeta.appendChild(titulo);
-            tarjeta.appendChild(parrafo);
+            tarjeta.appendChild(contenido)
 
             tarjeta.addEventListener('click', () => {
                 detallesMascotas(data.id, data.id_usuario, tarjeta.getAttribute("data-value"));
